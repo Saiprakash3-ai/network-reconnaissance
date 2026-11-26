@@ -4,10 +4,6 @@
 
 > **Safety first.** Private-lab-only by default. Explicit scope allowlisting, CIDR/hostname validation, rate/concurrency limits, timeouts, job cancellation, audit logging, and raw evidence preservation are enforced. **No arbitrary user-supplied shell commands. No automatic exploitation. No credential harvesting. No unauthorized access.**
 
-## Demo
-
-[▶ Terminal demo video](demo/network-reconnaissance-terminal.mp4)
-
 ## Core Workflow
 
 ```text
