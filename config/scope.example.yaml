@@ -1,0 +1,47 @@
+# Scope & Authorization Record
+# All targets must be explicitly authorized and within allowed ranges.
+# Private-lab-only mode is enabled by default in settings.yaml.
+
+engagement:
+  name: "Local Lab Assessment"
+  id: "lab-001"
+  authorized_by: "Lab Owner"
+  authorized_at: "2026-11-26T00:00:00Z"
+  expires_at: "2027-11-26T00:00:00Z"
+  notes: "Isolated virtual lab only. No external or production targets."
+
+policy:
+  private_lab_only: true
+  allow_public_targets: false
+  require_explicit_allowlist: true
+  max_cidr_prefix_v4: 24
+  max_cidr_prefix_v6: 64
+
+allowed_targets:
+  cidrs:
+    - 192.168.56.0/24
+    - 10.10.10.0/24
+    - 127.0.0.1/32
+    - ::1/128
+  hosts:
+    - localhost
+    - kali.local
+    - ubuntu-server.local
+    - metasploitable.local
+    - juice-shop.local
+
+banned_targets:
+  - 0.0.0.0/0
+  - ::/0
+  - 169.254.169.254
+  - metadata.google.internal
+
+approved_scan_profiles:
+  - discovery
+  - port_scan
+  - service_enum
+  - dns_enum
+  - osint_passive
+  - vuln_assessment
+  - pcap_analysis
+  - full_lab_assessment

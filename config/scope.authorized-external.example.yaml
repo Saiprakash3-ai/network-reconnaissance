@@ -1,0 +1,35 @@
+# AUTHORIZED EXTERNAL ASSESSMENT EXAMPLE - DO NOT USE WITHOUT WRITTEN AUTHORIZATION
+# Copy/edit only for targets you own or have explicit written permission to assess.
+# Keep private-lab-only defaults for normal lab use.
+
+engagement:
+  name: "Authorized External Assessment"
+  id: "auth-ext-001"
+  authorized_by: "REPLACE_WITH_AUTHORIZING_OWNER"
+  authorized_at: "2026-11-26T00:00:00Z"
+  expires_at: "2027-11-26T00:00:00Z"
+  notes: "Explicit written authorization required. Replace allowed_targets with authorized targets only."
+
+policy:
+  private_lab_only: false
+  allow_public_targets: true
+  require_explicit_allowlist: true
+  max_cidr_prefix_v4: 32
+  max_cidr_prefix_v6: 128
+
+allowed_targets:
+  cidrs: []
+  hosts:
+    - example-authorized-target.invalid
+
+banned_targets:
+  - 0.0.0.0/0
+  - ::/0
+  - 169.254.169.254
+  - metadata.google.internal
+
+approved_scan_profiles:
+  - discovery
+  - port_scan
+  - service_enum
+  - full_lab_assessment

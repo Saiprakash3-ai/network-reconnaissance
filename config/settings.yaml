@@ -1,0 +1,84 @@
+app:
+  name: Network Reconnaissance
+  environment: development
+  private_lab_only: true
+  max_concurrent_jobs: 2
+  default_scan_timeout_seconds: 300
+  max_scan_timeout_seconds: 900
+  rate_limit_requests_per_minute: 60
+  audit_log_path: ./lab/evidence/audit.log
+  artifact_dir: ./lab/evidence/artifacts
+  report_dir: ./reports/output
+
+database:
+  url: sqlite+aiosqlite:///./nr.db
+  echo: false
+
+scope:
+  config_path: ./config/scope.example.yaml
+  allow_public_targets: false
+  allowed_cidrs:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - 127.0.0.0/8
+    - ::1/128
+    - fc00::/7
+    - fe80::/10
+  allowed_hosts:
+    - localhost
+    - juice-shop.local
+    - metasploitable.local
+  banned_targets:
+    - 0.0.0.0/0
+    - ::/0
+    - 169.254.169.254
+
+scheduler:
+  max_workers: 2
+  queue_poll_seconds: 1
+
+integrations:
+  nmap:
+    enabled: true
+    binary: nmap
+  naabu:
+    enabled: false
+    binary: naabu
+  nuclei:
+    enabled: false
+    binary: nuclei
+  amass:
+    enabled: false
+    binary: amass
+  subfinder:
+    enabled: false
+    binary: subfinder
+  dnsx:
+    enabled: false
+    binary: dnsx
+  httpx:
+    enabled: false
+    binary: httpx
+  testssl:
+    enabled: false
+    binary: testssl.sh
+  enum4linux_ng:
+    enabled: false
+    binary: enum4linux-ng
+  snmpwalk:
+    enabled: false
+    binary: snmpwalk
+  ssh_audit:
+    enabled: false
+    binary: ssh-audit
+  tshark:
+    enabled: false
+    binary: tshark
+  greenbone:
+    enabled: false
+    url: ""
+
+reporting:
+  formats: [html, json, csv]
+  pdf_enabled: false

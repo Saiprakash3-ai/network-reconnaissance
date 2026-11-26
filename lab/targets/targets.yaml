@@ -1,0 +1,23 @@
+# Authorized lab targets only. Keep in sync with config/scope.example.yaml.
+
+targets:
+  - id: local-loopback
+    address: 127.0.0.1
+    type: ip
+    description: Local controller smoke test
+    profiles: [discovery, port_scan, service_enum]
+  - id: ubuntu-server
+    address: 192.168.56.20
+    type: ip
+    description: Ubuntu lab server
+    profiles: [discovery, port_scan, service_enum, full_lab_assessment]
+  - id: metasploitable
+    address: 192.168.56.40
+    type: ip
+    description: Intentionally vulnerable lab VM
+    profiles: [discovery, port_scan, service_enum, full_lab_assessment]
+  - id: juice-shop
+    address: 192.168.56.50
+    type: ip
+    description: OWASP Juice Shop web target
+    profiles: [discovery, port_scan, service_enum]

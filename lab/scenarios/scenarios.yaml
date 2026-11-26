@@ -1,0 +1,57 @@
+scenarios:
+  - id: S01-host-discovery
+    phase: 2
+    description: Discover live hosts in isolated subnet
+    profile: discovery
+    targets: ["192.168.56.0/24"]
+    expected: [live host inventory, MAC/IP mapping, audit log]
+  - id: S02-port-scan
+    phase: 2
+    description: Identify open TCP ports on authorized host
+    profile: port_scan
+    targets: ["192.168.56.40"]
+    options: {top_ports: 100}
+  - id: S03-service-enum
+    phase: 3
+    description: Enumerate services and versions
+    profile: service_enum
+    targets: ["192.168.56.40"]
+    options: {ports: "21,22,80,139,445"}
+  - id: S04-os-fingerprint
+    phase: 3
+    description: OS fingerprinting (privileged/compatible environment)
+    profile: service_enum
+    targets: ["192.168.56.40"]
+    options: {os_detection: true}
+  - id: S05-dns-discovery
+    phase: 4
+    description: DNS/subdomain enumeration
+    profile: dns_enum
+  - id: S06-smb-enum
+    phase: 3
+    description: SMB enumeration with enum4linux-ng/Nmap NSE
+    profile: service_enum
+  - id: S07-ssh-ftp-snmp
+    phase: 3
+    description: SSH/FTP/SNMP inspection
+    profile: service_enum
+  - id: S08-pcap-analysis
+    phase: 6
+    description: Capture/import PCAP and analyze protocols
+    profile: pcap_analysis
+  - id: S09-vuln-correlation
+    phase: 5
+    description: Correlate service versions to CVE/KEV/EPSS
+    profile: vuln_assessment
+  - id: S10-topology
+    phase: 7
+    description: Build interactive topology graph
+    profile: full_lab_assessment
+  - id: S11-remediation-diff
+    phase: 9
+    description: Before/after remediation scan comparison
+    profile: full_lab_assessment
+  - id: S12-reporting
+    phase: 9
+    description: Generate executive/technical report
+    profile: full_lab_assessment
